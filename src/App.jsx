@@ -34,6 +34,7 @@ function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="searchResults" element={<SearchResultsPage />} />
         <Route path="/sitterDetails" element={<SitterDetailsPage />} />
+        <Route path="/clientFavoritesPage" element={<ClientFavoritesPage />} />
       </Routes>
       <Footer />
     </div>
