@@ -22,7 +22,16 @@ const addReviewPage = (props) => {
   //add axios post request here
   const postNewReview = async () => {
     try {
-      let response = await axios.post(`https://localhost:5001/api/reviews/`);
+      let response = await axios.post(
+        `https://localhost:5001/api/reviews/`,
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer" + token,
+          },
+        }
+      );
+      console.log(response);
       setNewReview(response.data.clientId);
     } catch (error) {
       console.log("Error in post new review: ", error);
