@@ -14,10 +14,14 @@ import Footer from "./components/Footer/Footer";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
+import { FileUpload } from "./FileUpload";
 
 function App() {
   return (
     <div>
+      <div className="App">
+        <FileUpload />
+      </div>
       <Navbar />
       <Routes>
         <Route
@@ -32,7 +36,6 @@ function App() {
         <Route path="/registerSitter" element={<RegisterSitterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="searchResults" element={<SearchResultsPage />} />
         <Route path="/sitterDetails" element={<SitterDetailsPage />} />
         <Route path="/clientFavoritesPage" element={<ClientFavoritesPage />} />
       </Routes>
