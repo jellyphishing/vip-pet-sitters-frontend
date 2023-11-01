@@ -22,8 +22,31 @@ const SearchPage = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetchSitters();
   };
-  return <div></div>;
+
+  return (
+    <div className="container search">
+      <h1>Find Your Sitter Here!</h1>
+      <h2>Please search by typing in one of the following key words: </h2>
+      <ul>
+        <li>*bully breeds</li>
+        <li>*high maintenance personalities</li>
+        <li>*medical</li>
+        <li>*exotics</li>
+        <li>*in your home</li>
+        <li>*in my home</li>
+        <li>*in your hotel</li>
+        <li>*long-term</li>
+        <li>*deployment foster</li>
+      </ul>
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleSubmit={handleSubmit}
+      />
+    </div>
+  );
 };
 
 export default SearchPage;
