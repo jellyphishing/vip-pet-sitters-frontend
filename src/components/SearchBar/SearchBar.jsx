@@ -1,5 +1,5 @@
 import React from "react";
-import "./SearchBar.css";
+//import "./SearchBar.css";
 import axios from "axios";
 
 const SearchBar = ({ searchTerm = "", setSearchTerm, handleSubmit }) => {

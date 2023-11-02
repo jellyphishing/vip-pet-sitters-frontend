@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useAuth from "../..hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 
-const addReviewPage = (props) => {
+const addReviewForm = (props) => {
   const [user, token] = useAuth();
   const navigate = useNavigate();
 
@@ -16,10 +16,6 @@ const addReviewPage = (props) => {
     initialValues
   );
 
-  async function postNewReview() {
-    console.log("Form Submitted");
-  }
-  //add axios post request here
   const postNewReview = async () => {
     try {
       let response = await axios.post(
@@ -56,4 +52,4 @@ const addReviewPage = (props) => {
   );
 };
 
-export default addReviewPage;
+export default addReviewForm;

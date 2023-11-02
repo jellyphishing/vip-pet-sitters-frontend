@@ -25,7 +25,7 @@ const SitterDetailsPage = () => {
       let response = await axios.options(
         `https://localhost:5001/api/favorites/`
       );
-      setNewFavorite(response.data.sitterId);
+      postNewFavorite(response.data.sitterId);
     } catch (error) {
       console.log("Error in post new favorite: ", error);
     }
@@ -35,17 +35,17 @@ const SitterDetailsPage = () => {
       {sitterDetails ? (
         <div>
           <h1>All About Me!</h1>
-          <h3>Welcome to {sitterDetails.Id}'s page!</h3>
-          <h3>{sitterDetails.allAboutMe}All About Me: </h3>
-          <h3>{sitterDetails.firstName}First Name: </h3>
-          <h3>{sitterDetails.lastName}Last Name: </h3>
-          <h3>{sitterDetails.streetAddress}Street Address: </h3>
-          <h3>{sitterDetails.city}City: </h3>
-          <h3>{sitterDetails.zipCode}Zip Code: </h3>
-          <h3>{sitterDetails.email}Email: </h3>
-          <h3>{sitterDetails.phoneNumber}Phone Number: </h3>
-          <h3>{sitterDetails.vipServices}VIP Services: </h3>
-          <h3>{sitterDetails.accommodations}Accommodations: </h3>
+          <h3>Welcome to {sitterDetails.firstName}'s page!</h3>
+          <h3>All About Me: {sitterDetails.allAboutMe}</h3>
+          <h3>First Name: {sitterDetails.firstName}</h3>
+          <h3>Last Name: {sitterDetails.lastName}Last Name: </h3>
+          <h3>Street Address: {sitterDetails.streetAddress}</h3>
+          <h3>City: {sitterDetails.city}</h3>
+          <h3>Zip Code: {sitterDetails.zipCode}</h3>
+          <h3>Email: {sitterDetails.email}</h3>
+          <h3>Phone Number: {sitterDetails.phoneNumber}</h3>
+          <h3>VIP Services: {sitterDetails.vipServices}</h3>
+          <h3>Accommodations: {sitterDetails.accommodations}</h3>
         </div>
       ) : (
         <h1>Loading...</h1>

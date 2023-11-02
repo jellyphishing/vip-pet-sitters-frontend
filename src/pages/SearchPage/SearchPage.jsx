@@ -7,7 +7,7 @@ import "./SearchPage.css";
 
 const SearchPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchresults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   const fetchSitters = async () => {
     try {
