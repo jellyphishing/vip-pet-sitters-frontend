@@ -15,7 +15,7 @@ const SearchPage = () => {
       let response = await axios.get(
         `https://localhost:5001/api/sitters/${lowerCaseSearch}/`
       );
-      setSearchResults(response.data.sitters);
+      setSearchResults(response.data.items); //switched out .sitters for .items
     } catch (error) {
       console.log("Error in fetchSitters: ", error);
     }
@@ -28,6 +28,11 @@ const SearchPage = () => {
   return (
     <div className="container search">
       <h1>Find Your Sitter Here!</h1>
+      <SearchBar
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+        handleSubmit={handleSubmit}
+      />
       <h2>Please search by typing in one of the following key words: </h2>
       <ul>
         <li>*bully breeds</li>
@@ -40,11 +45,7 @@ const SearchPage = () => {
         <li>*long-term</li>
         <li>*deployment foster</li>
       </ul>
-      <SearchBar
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        handleSubmit={handleSubmit}
-      />
+      <ResultsList searchResults={searchResults} />
     </div>
   );
 };

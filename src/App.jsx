@@ -13,20 +13,13 @@ import SitterDetailsPage from "./pages/SitterDetailsPage/SitterDetailsPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
-import ResultsList from "./components/ResultsList/ResultsList";
-import ReviewForm from "./components/ReviewForm/ReviewForm";
-import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
-import { FileUpload } from "./FileUpload";
 
 function App() {
   return (
     <div>
-      <div className="App">
-        <FileUpload />
-      </div>
       <Navbar />
       <Routes>
         <Route
@@ -40,7 +33,7 @@ function App() {
         <Route path="/registerClient" element={<RegisterClientPage />} />
         <Route path="/registerSitter" element={<RegisterSitterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/search" element={<SearchPage />} />
+        <Route path="/searchpage" element={<SearchPage />} />
         <Route path="/sitterDetails" element={<SitterDetailsPage />} />
       </Routes>
       <Footer />

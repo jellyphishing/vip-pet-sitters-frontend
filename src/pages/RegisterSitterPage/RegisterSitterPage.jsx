@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
+import { FileUpload } from "../../FileUpload";
+//import {fileUpload} from "../utils/FileUpload";
 
 const RegisterSitterPage = () => {
   const { registerUser } = useContext(AuthContext);
@@ -14,6 +16,9 @@ const RegisterSitterPage = () => {
     city: "",
     zipCode: "",
     phoneNumber: "",
+    vipServices: "",
+    accommodations: "",
+    // fileUpload: "",
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     registerUser,
@@ -104,6 +109,29 @@ const RegisterSitterPage = () => {
             onChange={handleInputChange}
           />
         </label>
+        <label>
+          VIP Services(bully breeds, exotics, high maintenance personalities,
+          medical):{" "}
+          <input
+            type="text"
+            name="vipServices"
+            value={formData.vipServices}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          Accommodations(my house, your house, in your hotel, long-term,
+          deployment foster) :{" "}
+          <input
+            type="text"
+            name="accommodations"
+            value={formData.accommodations}
+            onChange={handleInputChange}
+          />
+        </label>
+        <div className="App">
+          <FileUpload />
+        </div>
 
         <button>Register!</button>
       </form>

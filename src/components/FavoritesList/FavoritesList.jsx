@@ -1,5 +1,5 @@
 const FavoritesList = () => {
-  return <h1>These Books Rock!</h1>;
+  return <h1>I Loved These Sittes!</h1>;
 };
 
 export default FavoritesList;
