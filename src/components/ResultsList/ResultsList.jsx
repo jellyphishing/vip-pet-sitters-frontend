@@ -8,13 +8,15 @@ const ResultsList = ({ searchResults }) => {
     <div className="resultsList">
       <h2>VIP Sitters For You:</h2>
       {searchResults.map((sitters, index) => (
-        <Link to={`/${sitters.id}`} key={index}>
-          <div key={index}>
-            <h3>{sitters.vipServices}</h3>
-            <h3>{sitters.accommodations}</h3>
-            <h3>{sitters.favoritesCount}</h3>
-          </div>
-        </Link>
+        <div key={index}>
+          <ul>
+            <li>{sitters.firstName}</li>
+            <li>{sitters.lastName}</li>
+            <li>{sitters.vipServices}</li>
+            <li>{sitters.accommodations}</li>
+            <li>{sitters.favoritesCount}</li>
+          </ul>
+        </div>
       ))}
     </div>
   );

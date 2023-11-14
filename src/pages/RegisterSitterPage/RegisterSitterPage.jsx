@@ -111,7 +111,7 @@ const RegisterSitterPage = () => {
         </label>
         <label>
           VIP Services(bully breeds, exotics, high maintenance personalities,
-          medical):{" "}
+          medical, deployment foster):{" "}
           <input
             type="text"
             name="vipServices"
@@ -120,8 +120,7 @@ const RegisterSitterPage = () => {
           />
         </label>
         <label>
-          Accommodations(my house, your house, in your hotel, long-term,
-          deployment foster) :{" "}
+          Accommodations(in my home, in your home, in your hotel, long-term) :{" "}
           <input
             type="text"
             name="accommodations"

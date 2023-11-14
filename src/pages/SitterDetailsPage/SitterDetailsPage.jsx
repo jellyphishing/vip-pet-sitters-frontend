@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import useAuth from "../../hooks/useAuth";
 
 const SitterDetailsPage = () => {
   const { sitterId } = useParams();
   const [sitterDetails, setSitterDetails] = useState();
+  const [user, token] = useAuth();
+  const [location, setLocation] = useState(null);
 
   useEffect(() => {
     fetchSitterDetails();
@@ -12,7 +15,12 @@ const SitterDetailsPage = () => {
   const fetchSitterDetails = async () => {
     try {
       let response = await axios.get(
-        `https://localhost:5001/api/sitters/${sitterId}/`
+        `https://localhost:5001/api/sitters/${sitterId}/`,
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       );
       setSitterDetails(response.data);
     } catch (error) {
@@ -22,10 +30,19 @@ const SitterDetailsPage = () => {
 
   const postNewFavorite = async () => {
     try {
-      let response = await axios.options(
-        `https://localhost:5001/api/favorites/`
+      let response = await axios.post(
+        `https://localhost:5001/api/favorites/`,
+        {
+          sitterId: sitterId,
+          firstName: sitterDetails.firstName,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+        }
       );
-      postNewFavorite(response.data.sitterId);
+      fetchSitterDetails();
     } catch (error) {
       console.log("Error in post new favorite: ", error);
     }
@@ -34,18 +51,18 @@ const SitterDetailsPage = () => {
     <div className="container">
       {sitterDetails ? (
         <div>
-          <h1>All About Me!</h1>
-          <h3>Welcome to {sitterDetails.firstName}'s page!</h3>
-          <h3>All About Me: {sitterDetails.allAboutMe}</h3>
-          <h3>First Name: {sitterDetails.firstName}</h3>
-          <h3>Last Name: {sitterDetails.lastName}Last Name: </h3>
-          <h3>Street Address: {sitterDetails.streetAddress}</h3>
-          <h3>City: {sitterDetails.city}</h3>
-          <h3>Zip Code: {sitterDetails.zipCode}</h3>
-          <h3>Email: {sitterDetails.email}</h3>
-          <h3>Phone Number: {sitterDetails.phoneNumber}</h3>
-          <h3>VIP Services: {sitterDetails.vipServices}</h3>
-          <h3>Accommodations: {sitterDetails.accommodations}</h3>
+          <h1>Welcome to {sitterDetails.firstName}'s page!</h1>
+          <li>All About Me: {sitterDetails.allAboutMe}</li>
+          <li>First Name: {sitterDetails.firstName}</li>
+          <li>Last Name: {sitterDetails.lastName}</li>
+          <li>Street Address: {sitterDetails.streetAddress}</li>
+          <li>City: {sitterDetails.city}</li>
+          <li>Zip Code: {sitterDetails.zipCode}</li>
+          <li>Email: {sitterDetails.email}</li>
+          <li>Phone Number: {sitterDetails}</li>
+          <li>VIP Services: {sitterDetails.vipServices}</li>
+          <li>Accommodations: {sitterDetails.accommodations}</li>
+          <h3 onClick={postNewFavorite}>Love Button</h3>
         </div>
       ) : (
         <h1>Loading...</h1>
