@@ -30,6 +30,7 @@ const LoginPage = () => {
           financially, our pet paid the price. This is why we created VIP Pet
           Sitters!
         </p>
+        <br></br>
         <p>
           Need to find a pet sitter for your animal and struggling to find the
           right fit? Maybe you have a high maintenace bully breed? Or an exotic
