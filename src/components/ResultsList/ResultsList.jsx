@@ -12,8 +12,6 @@ const ResultsList = ({ searchResults }) => {
           <ul>
             <li>{sitters.firstName}</li>
             <li>{sitters.lastName}</li>
-            <li>{sitters.vipServices}</li>
-            <li>{sitters.accommodations}</li>
             <li>{sitters.favoritesCount}</li>
           </ul>
         </div>

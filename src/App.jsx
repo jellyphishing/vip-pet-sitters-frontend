@@ -9,7 +9,7 @@ import RegisterSitterPage from "./pages/RegisterSitterPage/RegisterSitterPage";
 import RegisterClientPage from "./pages/RegisterClientPage/RegisterClientPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import SitterDetailsPage from "./pages/SitterDetailsPage/SitterDetailsPage";
-import SitterHomePage from "./pages/SitterHomePage/SitterHomePage";
+//import SitterHomePage from "./pages/SitterHomePage/SitterHomePage";
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -36,7 +36,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/searchpage" element={<SearchPage />} />
         <Route path="/sitterDetails" element={<SitterDetailsPage />} />
-        <Route path="/sitterHomePage" element={<SitterHomePage />} />
+        {/* <Route path="/sitterHomePage" element={<SitterHomePage />} /> */}
       </Routes>
       <Footer />
     </div>

@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
 import { Link } from "react-router-dom";
 import "./LoginPage.css";
+//import SearchPage from "../SearchPage/SearchPage";
 
 const LoginPage = () => {
   const { loginUser, isServerError } = useContext(AuthContext);
