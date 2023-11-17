@@ -5,7 +5,7 @@ const useCustomForm = (onSubmit, initialValues = {}) => {
 
   const handleInputChange = (e) => {
     e.persist();
-    if (e.target.name === "isSitter") {
+    if (e.target.name === "isClient") {
       setFormValues({ ...formData, [e.target.name]: e.target.checked });
     } else {
       setFormValues({ ...formData, [e.target.name]: e.target.value });

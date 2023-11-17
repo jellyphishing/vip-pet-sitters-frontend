@@ -14,6 +14,7 @@ import SitterDetailsPage from "./pages/SitterDetailsPage/SitterDetailsPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+//import FavoritesList from "./components/FavoritesList/FavoritesList";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";

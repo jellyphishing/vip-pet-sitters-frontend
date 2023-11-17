@@ -23,16 +23,7 @@ const Navbar = () => {
             <b>Search</b>
           </Link>
         </li>
-        <li className="favorites">
-          {user ? (
-            <Link
-              to="favorites"
-              style={{ textDecoration: "none", color: "white" }}
-            >
-              <b>Favorites</b>
-            </Link>
-          ) : null}
-        </li>
+
         <li>
           {user ? (
             <button onClick={logoutUser}>Logout</button>
