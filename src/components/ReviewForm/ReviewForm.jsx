@@ -1,21 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 
-const addReviewForm = (props) => {
+const AddReviewForm = (props) => {
   const [user, token] = useAuth();
   const navigate = useNavigate();
+  const [newReview, setNewReview] = useState();
 
-  const initialValues = {
-    text: "",
-  };
-  const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
-    postNewReview,
-    initialValues
-  );
-
+  // Define postNewReview before using it in useCustomForm
   const postNewReview = async () => {
     try {
       let response = await axios.post(
@@ -23,7 +17,7 @@ const addReviewForm = (props) => {
         formData,
         {
           headers: {
-            Authorization: "Bearer" + token,
+            Authorization: "Bearer " + token, // Added space after "Bearer"
           },
         }
       );
@@ -33,6 +27,16 @@ const addReviewForm = (props) => {
       console.log("Error in post new review: ", error);
     }
   };
+
+  const initialValues = {
+    text: "",
+  };
+
+  const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
+    postNewReview,
+    initialValues
+  );
+
   return (
     <div className="container">
       <h1>Share your thoughts! Write a review!</h1>
@@ -46,10 +50,10 @@ const addReviewForm = (props) => {
             onChange={handleInputChange}
           />
         </label>
+        <button type="submit">Add New Review</button>
       </form>
-      <button>Add New Review</button>
     </div>
   );
 };
 
-export default addReviewForm;
+export default AddReviewForm;

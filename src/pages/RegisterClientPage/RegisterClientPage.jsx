@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import AuthContext from "../../context/AuthContext";
 import useCustomForm from "../../hooks/useCustomForm";
+// import { Routes, Route } from "react-router-dom";
+// import HomePage from "./pages/HomePage/HomePage";
+// import PrivateRoute from "./utils/PrivateRoute";
 
 const RegisterClientPage = () => {
   const { registerUser } = useContext(AuthContext);

@@ -1,0 +1,66 @@
+//   const SitterDetailsPage = () => {
+//     const { sitterId, clientId } = useParams();
+//     const [sitterDetails, setSitterDetails] = useState();
+//     const [user, token] = useAuth();
+//     const [location, setLocation] = useState(null);
+//     const [newFavorite, setNewFavorite] = useState();
+//     const [clientReviews, setClientReviews] = useState();
+
+//     const handleReviewSubmit = async (reviewText) => {
+//       try {
+//         // Add logic to submit the review (e.g., using axios.post)
+//         console.log("Review submitted:", reviewText);
+//       } catch (error) {
+//         console.error("Error submitting review:", error);
+//       }
+//     };
+
+//     useEffect(() => {
+//       const fetchLocation = async () => {
+//         // ... (existing code for fetchLocation)
+//       };
+
+//       const fetchSitterDetails = async () => {
+//         // ... (existing code for fetchSitterDetails)
+//       };
+
+//       const postNewFavorite = async () => {
+//         // ... (existing code for postNewFavorite)
+//       };
+
+//       const fetchClientReviews = async () => {
+//         // ... (existing code for fetchClientReviews)
+//       };
+
+//       fetchLocation();
+//       fetchSitterDetails();
+//       postNewFavorite();
+//       fetchClientReviews();
+//     }, [sitterId]);
+
+//     const btnClass = newFavorite ? "active-btn" : "";
+
+//     return (
+//       <div className="container">
+//         {sitterDetails ? (
+//           <div>
+//             {/* ... (existing code) */}
+//             {location && <p>Location: {location}</p>}
+//             <CustomButton
+//               onClick={postNewFavorite}
+//               active={newFavorite}
+//               label="Love Button!"
+//             />
+//             <ReviewForm
+//               onSubmit={(reviewText) => handleReviewSubmit(reviewText)}
+//             />
+//           </div>
+//         ) : (
+//           <h1>Loading...</h1>
+//         )}
+//         <ResultsList sitterDetails={sitterDetails} />
+//       </div>
+//     );
+//   };
+
+//   export default SitterDetailsPage;

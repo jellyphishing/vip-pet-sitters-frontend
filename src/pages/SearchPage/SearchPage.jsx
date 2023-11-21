@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import SearchBar from "../../components/SearchBar/SearchBar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ResultsList from "../../components/ResultsList/ResultsList";
 import "./SearchPage.css";
 import useAuth from "../../hooks/useAuth";
@@ -33,6 +33,7 @@ const SearchPage = () => {
       console.log("Error in fetchSitters: ", error);
     }
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetchSitters();

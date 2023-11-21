@@ -35,8 +35,11 @@ function App() {
         <Route path="/registerClient" element={<RegisterClientPage />} />
         <Route path="/registerSitter" element={<RegisterSitterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/searchpage" element={<SearchPage />} />
-        <Route path="/sitterDetails" element={<SitterDetailsPage />} />
+        <Route path="/searchPage/*" element={<SearchPage />} />
+        <Route
+          path="/sitterDetailsPage/:sitterId"
+          element={<SitterDetailsPage />}
+        />
         {/* <Route path="/sitterHomePage" element={<SitterHomePage />} /> */}
       </Routes>
       <Footer />

@@ -15,6 +15,7 @@ function setUserObject(user) {
     userName: user.userName,
     id: user.id,
     email: user.email,
+    isSitter: user.isSitter,
   };
 }
 
@@ -57,6 +58,7 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("token", JSON.stringify(response.data.access));
         setToken(JSON.parse(localStorage.getItem("token")));
         let loggedInUser = jwtDecode(response.data.access);
+        console.log(">>>>>>>>>>>>> logged in user", loggedInUser);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
         navigate("/");
