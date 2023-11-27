@@ -4,20 +4,20 @@ import useAuth from "../../hooks/useAuth";
 
 const FavoriteForm = ({ sitterId }) => {
   const [user, token] = useAuth();
-  const [favoritesCount, setFavoritesCount] = useState(0);
+  const [favorites, setFavoritesCount] = useState(0);
 
   useEffect(() => {
     const fetchFavoritesCount = async () => {
       try {
         const response = await axios.get(
-          `https://localhost:5001/api/favorites/${sitterId}/count`,
+          `https://localhost:5001/api/favorites/count/${sitterId}`,
           {
             headers: {
               Authorization: "Bearer " + token,
             },
           }
         );
-        setFavoritesCount(response.data.count);
+        setFavoritesCount(response.data);
       } catch (error) {
         console.error("Error fetching favorites count:", error);
       }
@@ -28,7 +28,7 @@ const FavoriteForm = ({ sitterId }) => {
 
   return (
     <div>
-      <p>Favorites Count: {favoritesCount}</p>
+      <p>Favorites Count: {favorites && favorites.favoritesCount}</p>
     </div>
   );
 };

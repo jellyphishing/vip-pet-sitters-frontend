@@ -1,4 +1,4 @@
-//
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -8,6 +8,7 @@ import ReviewForm from "../../components/ReviewForm/ReviewForm";
 import CustomButton from "../../components/CustomButton/CustomButton";
 import ResultsList from "../../components/ResultsList/ResultsList";
 import "./SitterDetailsPage.css";
+import FavoriteForm from "../../components/FavoriteForm/FavoriteForm";
 
 const SitterDetailsPage = () => {
   const { sitterId, clientId } = useParams();
@@ -19,27 +20,6 @@ const SitterDetailsPage = () => {
   const [clientReviews, setClientReviews] = useState();
   const [newReview, setNewReview] = useState();
 
-  // const handleReviewSubmit = async (reviewText) => {
-  //   try {
-  //     let response = await axios.post(
-  //       `https://localhost:5001/api/reviews/`,
-  //       {
-  //         sitterId: sitterId,
-  //         clientId: clientId,
-  //         reviewText: reviewText,
-  //       },
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + token,
-  //         },
-  //       }
-  //     );
-
-  //     console.log("Review submitted:", reviewText);
-  //   } catch (error) {
-  //     console.error("Error submitting review:", error);
-  //   }
-  // };
   useEffect(() => {
     const fetchSitterDetails = async () => {
       try {
@@ -53,87 +33,12 @@ const SitterDetailsPage = () => {
         );
         setSitterDetails(response.data);
         console.log("sitterDetailsPage response.data=", response.data);
-        // postNewReview();
-        // postNewFavorite();
       } catch (error) {
         console.log("Error in fetch sitter details: ", error);
       }
     };
-    // const fetchLocation = async () => {
-    //   try {
-    //     const apiKey = "AIzaSyDxUMDxleuv72lZ_iwW9xy3OK_9u7cQx_0";
-    //     const response = await axios.get(
-    //       `https://maps.googleapis.com/maps/api/geocode/json?address=${sitterId.address}&key=${apiKey}`,
-    //       {
-    //         headers: {
-    //           Authorization: "Bearer " + token,
-    //         },
-    //       }
-    //     );
 
-    //     // Extract the location details from the response
-    //     const { results } = response.data;
-    //     if (results && results.length > 0) {
-    //       const { formatted_address } = results[0];
-    //       setLocation(formatted_address);
-    //     }
-    //   } catch (error) {
-    //     console.error("Error fetching location:", error);
-    //   }
-    // };
-
-    // const postNewFavorite = async () => {
-    //   try {
-    //     let response = await axios.post(
-    //       `https://localhost:5001/api/favorites/`,
-    //       {
-    //         sitterId: sitterId,
-    //   clientId: clientId,
-    //
-    //       },
-    //       {
-    //         headers: {
-    //           Authorization: "Bearer " + token,
-    //         },
-    //       }
-    //     );
-    //     setNewFavorite(response.data);
-    //     console.log(response.data);
-    //   } catch (error) {
-    //     console.log("Error in post new favorite: ", error);
-    //   }
-    // };
-    // const postNewReview = async (reviewText) => {
-    //   if (!reviewText) return null;
-    //   try {
-    //     let response = await axios.post(
-    //       `https://localhost:5001/api/reviews/`,
-    //       {
-    //         sitterId: sitterId,
-    //         clientId: clientId,
-    //         text: reviewText,
-    //       },
-    //       {
-    //         headers: {
-    //           Authorization: "Bearer " + token,
-    //         },
-    //       }
-    //     );
-    //     setNewReview(response.data);
-    //     console.log(
-    //       "sitterDetailsPage postNewReview response.data=",
-    //       response.data
-    //     );
-    //   } catch (error) {
-    //     console.log("Error in post new review: ", error);
-    //   }
-    // };
-
-    //fetchLocation();
     fetchSitterDetails();
-    // postNewFavorite();
-
-    // postNewReview();
   }, [sitterId, token]);
 
   return (
@@ -145,10 +50,6 @@ const SitterDetailsPage = () => {
           </span>
 
           <table>
-            {/* <tr>
-              <th>Field</th>
-              <th>Value</th>
-            </tr> */}
             <tr>
               <td>First Name:</td>
               <td>{sitterDetails[0].sitter.firstName}</td>
@@ -191,22 +92,23 @@ const SitterDetailsPage = () => {
             </tr>
           </table>
 
-          {/* <p>Sitter ID: {sitterId}</p> */}
-
-          {/* {location && <p>Location: {location}</p>} */}
           <CustomButton
             onClick={setNewFavorite}
             active={newFavorite}
             label="Love Button!"
           />
           <ReviewForm clientId={clientId} sitterId={sitterId} />
-          {/* <h2>Check out my reviews!</h2>turn this back on if the reviews list doesn't work */}
+          <FavoriteForm sitterId={sitterId} />
         </div>
       ) : (
         <h1>Loading...</h1>
       )}
       <ResultsList sitterDetails={sitterDetails} />
       <ReviewsList sitterDetails={sitterDetails} />
+
+      <form>
+        <Link to="/updateSitter">Update Sitter Profile</Link>
+      </form>
     </div>
   );
 };

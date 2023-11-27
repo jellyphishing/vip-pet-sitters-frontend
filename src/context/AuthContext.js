@@ -50,6 +50,42 @@ export const AuthProvider = ({ children }) => {
       console.log(error);
     }
   };
+  const updateUser = async (registerData) => {
+    try {
+      let finalData = {
+        userName: registerData.username,
+        password: registerData.password,
+        email: registerData.email,
+        firstName: registerData.firstName,
+        lastName: registerData.lastName,
+        streetAddress: registerData.streetAddress,
+        phoneNumber: registerData.phoneNumber,
+        city: registerData.city,
+        zipCode: registerData.zipCode,
+        vipServices: registerData.vipServices,
+        accommodations: registerData.accommodations,
+        allAboutMe: registerData.allAboutMe,
+      };
+      let response = await axios.put(
+        `https://localhost:5001/api/sitters/${user.id}`,
+        finalData,
+        {
+          headers: {
+            Authorization: "Bearer " + token, // Added space after "Bearer"
+          },
+        }
+      );
+      if (response.status === 201) {
+        console.log("Successful update!");
+        setIsServerError(false);
+        navigate(`/sitterDetailsPage/${user.id}`);
+      } else {
+        navigate(`/sitterDetailsPage/${user.id}`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const loginUser = async (loginData) => {
     try {
@@ -66,7 +102,7 @@ export const AuthProvider = ({ children }) => {
         console.log("isSitter:", loggedInUser.isSitter);
         console.log("Navigating...");
 
-        if (loggedInUser.isSitter === true) {
+        if (loggedInUser.isSitter === "True") {
           navigate(`/sitterDetailsPage/${loggedInUser.id}`);
         } else {
           navigate("/");
@@ -96,6 +132,7 @@ export const AuthProvider = ({ children }) => {
     loginUser,
     logoutUser,
     registerUser,
+    updateUser,
     isServerError,
   };
 

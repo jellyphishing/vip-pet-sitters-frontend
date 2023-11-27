@@ -11,17 +11,17 @@ const ReviewForm = ({ clientId, sitterId }) => {
 
   // Define postNewReview before using it in useCustomForm
   const postNewReview = async () => {
+    let thingToPost = {
+      clientId: user.id,
+      sitterId: sitterId,
+      text: data.text, //or text:reviewData.text
+    };
     try {
       console.log("Token:", token);
+      console.log("Thing to post:", thingToPost);
       let response = await axios.post(
         `https://localhost:5001/api/reviews/`,
-        {
-          clientId: clientId,
-          sitterId: sitterId,
-          text: data.text, //or text:reviewData.text
-        },
-
-        //formData,
+        thingToPost,
         {
           headers: {
             Authorization: "Bearer " + token, // Added space after "Bearer"
@@ -46,7 +46,6 @@ const ReviewForm = ({ clientId, sitterId }) => {
 
   return (
     <div className="container">
-      {/* <h3>Share your thoughts! Write a review!</h3> */}
       <form className="form" onSubmit={handleSubmit}>
         <label>
           Share your thoughts! Write a review:{" "}
