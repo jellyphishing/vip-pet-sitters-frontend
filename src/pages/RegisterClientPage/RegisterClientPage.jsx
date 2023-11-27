@@ -17,6 +17,7 @@ const RegisterClientPage = () => {
     city: "",
     zipCode: "",
     phoneNumber: "",
+    isSitter: false,
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(
     registerUser,

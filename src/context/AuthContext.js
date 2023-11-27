@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
         email: registerData.email,
         firstName: registerData.firstName,
         lastName: registerData.lastName,
+        isSitter: registerData.isSitter,
       };
       let response = await axios.post(`${BASE_URL}`, finalData);
       if (response.status === 201) {
@@ -61,7 +62,15 @@ export const AuthProvider = ({ children }) => {
         console.log(">>>>>>>>>>>>> logged in user", loggedInUser);
         setUser(setUserObject(loggedInUser));
         setIsServerError(false);
-        navigate("/");
+
+        console.log("isSitter:", loggedInUser.isSitter);
+        console.log("Navigating...");
+
+        if (loggedInUser.isSitter === true) {
+          navigate(`/sitterDetailsPage/${loggedInUser.id}`);
+        } else {
+          navigate("/");
+        }
       } else {
         navigate("/register");
       }

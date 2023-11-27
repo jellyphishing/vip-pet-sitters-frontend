@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 
 export const FileUpload = () => {
-  const [insurance, setInsurance] = useState();
+  const [file, setFile] = useState();
 
   const saveFile = (e) => {
     console.log(e.target.files[0]);
-    setInsurance(e.target.files[0]);
-    setInsurance(e.target.files[0].name);
+    setFile(e.target.files[0]);
   };
-  const uploadFile = async (e) => {
+  const uploadFile = async () => {
     console.log(file);
     const formData = new FormData();
     formData.append("formFile", file);
-    formData.append("insurance", insurance);
+
     try {
       const res = await axios.post("https://localhost:5001/api/file", formData);
       console.log(res);

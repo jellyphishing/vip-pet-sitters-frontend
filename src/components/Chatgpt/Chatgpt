@@ -1,66 +1,30 @@
-//   const SitterDetailsPage = () => {
-//     const { sitterId, clientId } = useParams();
-//     const [sitterDetails, setSitterDetails] = useState();
-//     const [user, token] = useAuth();
-//     const [location, setLocation] = useState(null);
-//     const [newFavorite, setNewFavorite] = useState();
-//     const [clientReviews, setClientReviews] = useState();
+import React, { useState } from "react";
+import axios from "axios";
 
-//     const handleReviewSubmit = async (reviewText) => {
-//       try {
-//         // Add logic to submit the review (e.g., using axios.post)
-//         console.log("Review submitted:", reviewText);
-//       } catch (error) {
-//         console.error("Error submitting review:", error);
-//       }
-//     };
+export const FileUpload = () => {
+  const [file, setFile] = useState(); // Change 'insurance' to 'file' for consistency
 
-//     useEffect(() => {
-//       const fetchLocation = async () => {
-//         // ... (existing code for fetchLocation)
-//       };
+  const saveFile = (e) => {
+    console.log(e.target.files[0]);
+    setFile(e.target.files[0]); // Change 'insurance' to 'file' for consistency
+  };
 
-//       const fetchSitterDetails = async () => {
-//         // ... (existing code for fetchSitterDetails)
-//       };
+  const uploadFile = async () => {
+    console.log(file);
+    const formData = new FormData();
+    formData.append("formFile", file);
+    try {
+      const res = await axios.post("https://localhost:5001/api/file", formData);
+      console.log(res);
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
 
-//       const postNewFavorite = async () => {
-//         // ... (existing code for postNewFavorite)
-//       };
-
-//       const fetchClientReviews = async () => {
-//         // ... (existing code for fetchClientReviews)
-//       };
-
-//       fetchLocation();
-//       fetchSitterDetails();
-//       postNewFavorite();
-//       fetchClientReviews();
-//     }, [sitterId]);
-
-//     const btnClass = newFavorite ? "active-btn" : "";
-
-//     return (
-//       <div className="container">
-//         {sitterDetails ? (
-//           <div>
-//             {/* ... (existing code) */}
-//             {location && <p>Location: {location}</p>}
-//             <CustomButton
-//               onClick={postNewFavorite}
-//               active={newFavorite}
-//               label="Love Button!"
-//             />
-//             <ReviewForm
-//               onSubmit={(reviewText) => handleReviewSubmit(reviewText)}
-//             />
-//           </div>
-//         ) : (
-//           <h1>Loading...</h1>
-//         )}
-//         <ResultsList sitterDetails={sitterDetails} />
-//       </div>
-//     );
-//   };
-
-//   export default SitterDetailsPage;
+  return (
+    <>
+      <input type="file" onChange={saveFile} />
+      <input type="button" value="upload" onClick={uploadFile} />
+    </>
+  );
+};

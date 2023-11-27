@@ -17,16 +17,50 @@ const ResultsList = ({ searchResults }) => {
   return (
     <div className="resultsList">
       <h2>VIP Sitters For You:</h2>
-      <ul>
-        {searchResults.map((sitters, index) => (
-          <li key={index}>
-            <Link to={`/sitterDetailsPage/${sitters.id}`}>
-              {sitters.firstName} {sitters.lastName}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <table>
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>VIP Services</th>
+            <th>Accommodations</th>
+          </tr>
+        </thead>
+        <tbody>
+          {searchResults.map((sitters, index) => (
+            <tr key={index}>
+              <td>
+                <Link to={`/sitterDetailsPage/${sitters.id}`}>
+                  {sitters.firstName}
+                </Link>
+              </td>
+              <td>{sitters.lastName}</td>
+              <td>{sitters.vipServices}</td>
+              <td>{sitters.accommodations}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
+
 export default ResultsList;
+
+//   return (
+//     <div className="resultsList">
+//       <h2>VIP Sitters For You:</h2>
+//       <ul>
+//         {searchResults.map((sitters, index) => (
+//           <li key={index}>
+//             <Link to={`/sitterDetailsPage/${sitters.id}`}>
+//               {sitters.firstName} {sitters.lastName} {sitters.vipServices}{" "}
+//               {sitters.accommodations}
+//             </Link>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+// export default ResultsList;

@@ -18,6 +18,7 @@ const RegisterSitterPage = () => {
     phoneNumber: "",
     vipServices: "",
     accommodations: "",
+    isSitter: true,
     // fileUpload: "",
   };
   const [formData, handleInputChange, handleSubmit] = useCustomForm(

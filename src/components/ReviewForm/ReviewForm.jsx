@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import useCustomForm from "../../hooks/useCustomForm";
 
-const AddReviewForm = (props) => {
+const ReviewForm = ({ clientId, sitterId }) => {
   const [user, token] = useAuth();
   const navigate = useNavigate();
   const [newReview, setNewReview] = useState();
@@ -12,16 +12,23 @@ const AddReviewForm = (props) => {
   // Define postNewReview before using it in useCustomForm
   const postNewReview = async () => {
     try {
+      console.log("Token:", token);
       let response = await axios.post(
         `https://localhost:5001/api/reviews/`,
-        formData,
+        {
+          clientId: clientId,
+          sitterId: sitterId,
+          text: data.text, //or text:reviewData.text
+        },
+
+        //formData,
         {
           headers: {
             Authorization: "Bearer " + token, // Added space after "Bearer"
           },
         }
       );
-      console.log(response);
+      console.log("reviewForm response=", response);
       setNewReview(response.data.clientId);
     } catch (error) {
       console.log("Error in post new review: ", error);
@@ -32,21 +39,21 @@ const AddReviewForm = (props) => {
     text: "",
   };
 
-  const [formData, handleInputChange, handleSubmit, reset] = useCustomForm(
+  const [data, handleInputChange, handleSubmit, reset] = useCustomForm(
     postNewReview,
     initialValues
   );
 
   return (
     <div className="container">
-      <h1>Share your thoughts! Write a review!</h1>
+      {/* <h3>Share your thoughts! Write a review!</h3> */}
       <form className="form" onSubmit={handleSubmit}>
         <label>
-          Text:{" "}
+          Share your thoughts! Write a review:{" "}
           <input
             type="text"
             name="text"
-            value={formData.text}
+            value={data.text} //reviewData.text
             onChange={handleInputChange}
           />
         </label>
@@ -56,4 +63,4 @@ const AddReviewForm = (props) => {
   );
 };
 
-export default AddReviewForm;
+export default ReviewForm;
